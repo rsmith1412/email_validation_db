@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Success!</title>
+    <link rel="stylesheet" href="{{ url_for ('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -                          <!-- check if there are any messages -->
+                {% for message in messages %}
+                    <div class="validation">            <!-- loop through the messages -->
+                        <p>{{message}}</p> 
+                    </div>                  <!-- display each message in a paragraph tag -->
+                {% endfor %}
+            {% endwith %}
+        <table class="table table-striped table-hover">
+            <th colspan=2>Email Addresses Entered:</th>
+            {% for email in emails %}
+                <tr>
+                    <td>{{email["email"]}}</td>
+                    <td>{{email["created_at"]}}</td>
+
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
