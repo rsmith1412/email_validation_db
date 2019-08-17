@@ -23,6 +23,8 @@ def validate():
         "em": request.form["email"]
     }
     session["id"] = mysql.query_db(query, data)
+    session["email"] = request.form["email"]
+    print(session["email"])
     return redirect("/success")
 
 @app.route('/success')
@@ -35,9 +37,27 @@ def display_email():
         "id": session["id"]
     }
     display_emails = mysql.query_db(query, data)
-    flash(" The email address you entered is a VALID email address! Thank you!")
+    last_email = session["email"]
+    # print(last_index)
+    if session["id"] != None:
+        flash(f" The email address you entered {last_email} is a VALID email address! Thank you!")
+    else:
+        flash("Email successfully deleted!")
     print("////", display_emails)
     return render_template("success.html", emails = display_emails)
+
+@app.route('/<id>/destroy')
+def destroy_email(id):
+    print("Let's destroy this id")
+    print(id)
+    mysql = connectToMySQL('email_validation_db')
+    query = "DELETE FROM email WHERE id = %(id)s;"
+    data = {
+        "id": id
+    }
+    session["id"] = mysql.query_db(query, data)
+    print("////", session["id"])
+    return redirect('/success')
 
 if __name__ == "__main__":
     app.run(debug=True)

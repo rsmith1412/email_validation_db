@@ -6,6 +6,7 @@
     background-color: green;
     padding: 10px;
     width: 50%;
+    margin: 0 auto;
 }
 .in_valid {
     color: white;
@@ -13,10 +14,13 @@
     padding: 10px;
     width: 50%;
     text-align: center;
+    margin: 0 auto;
 }
-.form {
+form {
     margin: 20px;
 }
-input["submit"] {
+input[type="submit"] {
     background-color: limegreen;
+    color: white;
+    border: 1px solid darkgreen;
 }

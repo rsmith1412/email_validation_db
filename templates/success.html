@@ -18,15 +18,16 @@
                 {% endfor %}
             {% endwith %}
         <table class="table table-striped table-hover">
-            <th colspan=2>Email Addresses Entered:</th>
+            <th colspan=3>Email Addresses Entered:</th>
             {% for email in emails %}
                 <tr>
                     <td>{{email["email"]}}</td>
                     <td>{{email["created_at"]}}</td>
-
+                    <td><a href="/{{email["id"]}}/destroy">Delete</a></td>
                 </tr>
             {% endfor %}
         </table>
+        <a href="/">Go Back</a>
     </div>
 </body>
 </html>
